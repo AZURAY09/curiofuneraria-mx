@@ -1,0 +1,500 @@
+:root {
+  --primary-color: #001f3f;
+  --secondary-color: #333;
+  --accent-color: #4a4a4a;
+  --text-color: #fff;
+  --background-color: #f4f4f4;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to bottom, var(--secondary-color), var(--background-color));
+  color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+header {
+  background: var(--primary-color);
+  color: var(--text-color);
+  padding: 1em 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  transition: background 0.3s ease;
+}
+
+header:hover {
+  background: #003366;
+}
+
+/* === MENÚ SUPERIOR: MEJORADO + BARRA + SEPARACIÓN === */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2em;
+  height: 70px;
+  gap: 2em; /* ← Más espacio entre logo y menú */
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9em;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #ffffff, #a0d8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 3.2em;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.4) transparent;
+}
+
+nav ul::-webkit-scrollbar {
+  height: 4px;
+}
+
+nav ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+nav ul::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+}
+
+nav ul::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1em;
+  padding: 0.65em 1.1em;
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.3px;
+  backdrop-filter: blur(4px);
+}
+
+/* Fondo etéreo al hover */
+nav ul a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+  border-radius: 12px;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav ul a:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Línea inferior sutil, animada desde el centro */
+nav ul a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 8px;
+  left: 50%;
+  background: linear-gradient(to right, transparent, #fff, transparent);
+  border-radius: 1px;
+  transition: width 0.4s ease, left 0.4s ease;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+nav ul a:hover::after {
+  width: 60%;
+}
+
+/* Efecto de elevación y brillo en texto */
+nav ul a:hover {
+  color: #ffffff;
+  transform: translateY(-3px);
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Responsivo: elegante incluso en móviles */
+@media (max-width: 992px) {
+  nav {
+    padding: 0 1.5em;
+  }
+  
+  nav ul {
+    gap: 2.4em;
+  }
+  
+  nav ul a {
+    font-size: 1.05em;
+    padding: 0.6em 1em;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    height: auto;
+    padding: 1em;
+    gap: 0.8em;
+  }
+  
+  .logo {
+    font-size: 1.7em;
+  }
+  
+  nav ul {
+    gap: 2em;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  nav ul a {
+    font-size: 1.02em;
+    padding: 0.55em 0.9em;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.5em;
+  }
+  
+  nav ul {
+    gap: 1.4em;
+  }
+  
+  nav ul a {
+    font-size: 0.98em;
+    padding: 0.5em 0.75em;
+  }
+  
+  nav ul a::after {
+    bottom: 6px;
+  }
+}
+
+/* === EL RESTO DEL CÓDIGO: 100% INTACTO === */
+.hero {
+  background: var(--secondary-color);
+  color: var(--text-color);
+  text-align: center;
+  padding: 5em 2em;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent);
+  z-index: 1;
+}
+
+.hero h1, .hero p {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+main {
+  max-width: 1200px;
+  margin: 2em auto;
+  padding: 1em;
+  display: grid;
+  gap: 2em;
+}
+
+.section-content {
+  background: #fff;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  transition: transform 0.3s ease;
+}
+
+.section-content:hover {
+  transform: translateY(-5px);
+}
+
+.section-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  margin: 1em 0;
+  transition: transform 0.3s ease;
+}
+
+.section-image:hover {
+  transform: scale(1.05);
+}
+
+.video-container {
+  text-align: center;
+  margin: 2em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+footer {
+  background: var(--primary-color);
+  color: var(--text-color);
+  text-align: center;
+  padding: 1em;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -4px 6px var(--shadow-color);
+}
+
+/* Formulario dentro de secciones: mantenido */
+form {
+  display: grid;
+  gap: 1.5em;
+  max-width: 600px;
+  margin: 2em auto;
+  background: #fff;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  transition: transform 0.3s ease;
+}
+
+form:hover {
+  transform: translateY(-5px);
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+form input, form textarea {
+  padding: 0.8em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+  border-color: var(--primary-color);
+}
+
+form button {
+  background: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 0.8em;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+form button:hover {
+  background: #003366;
+  transform: scale(1.05);
+}
+
+/* Modal y Banner (sin cambios) */
+.terms-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.terms-content {
+  background: #fff;
+  padding: 2em;
+  border-radius: 12px;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 2px solid var(--primary-color);
+  padding: 1em;
+  text-align: center;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 -4px 6px var(--shadow-color);
+}
+/* === BANNER DE COOKIES - FUNCIONA 100% === */
+#cookie-banner {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border-top: 3px solid #001f3f;
+  padding: 1.2em 1em;
+  z-index: 9999;
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15);
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+#cookie-banner.show {
+  display: block !important;
+}
+
+.cookie-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  text-align: center;
+  font-size: 0.95em;
+}
+
+.cookie-content p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cookie-content a {
+  color: #0066cc;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.cookie-content a:hover {
+  color: #001f3f;
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cookie-btn {
+  padding: 0.7em 1.4em;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95em;
+  min-width: 120px;
+}
+
+.cookie-btn.accept {
+  background: #001f3f;
+  color: white;
+}
+
+.cookie-btn.accept:hover {
+  background: #003366;
+  transform: translateY(-2px);
+}
+
+.cookie-btn.reject {
+  background: #666;
+  color: white;
+}
+
+.cookie-btn.reject:hover {
+  background: #444;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .cookie-content {
+    font-size: 0.9em;
+    padding: 0 0.5em;
+  }
+  .cookie-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cookie-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
